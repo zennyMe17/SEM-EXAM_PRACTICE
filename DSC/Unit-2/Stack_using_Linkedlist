@@ -1,0 +1,95 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node{
+    int data;
+    struct node *next;
+};
+
+struct node *top = 0, *temp, *newnode;
+
+void push()
+{
+    int x;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    printf("Enter the data to be stored\n");
+    scanf("%d",&x);
+    if (top == 0)
+    {
+        newnode->data = x;
+        newnode->next = 0;  
+        top = newnode;
+    }
+    else
+    {
+        newnode->data = x;
+        newnode->next = top;
+        top = newnode;
+    }
+}
+
+void display()
+{
+    temp = top;
+    while(temp != 0)
+    {
+    
+    printf("|\t%d\t|\n",temp->data);
+    temp=temp->next;
+    
+    }
+    
+}
+
+void peek()
+{
+    printf("top = %d\n",top->data);
+}
+
+void pop()
+{
+    temp = top;
+    top = top->next;
+    printf("Poped element is %d\n",temp->data);
+    free(temp);
+}
+
+void main()
+{
+    
+    int ch;
+    while(1)
+    {
+        
+        printf("Enter the choice\n1. To Push\n2. To Display\n3. To Peek\n4. To Pop\n5. To Exit\n ");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 1:
+            {
+                push();
+                break;
+            }
+            case 2:
+            {
+                display();
+                break;
+            }
+            case 3:
+            {
+                peek();
+                break;
+            }
+            case 4:
+            {
+                pop();
+                break;
+            }
+            case 5:
+            {
+                exit(0);
+                break;
+            }
+        }
+    }
+}
